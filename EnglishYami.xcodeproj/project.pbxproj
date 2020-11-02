@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		351BC12825501C5600BC4B0D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351BC12725501C5600BC4B0D /* NetworkManager.swift */; };
+		35B9D0FB254F0A830044A038 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B9D0FA254F0A830044A038 /* model.swift */; };
+		35B9D103254F0AB80044A038 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B9D102254F0AB80044A038 /* ViewModel.swift */; };
 		35C05ECE254C4F8300DCD484 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C05ECD254C4F8300DCD484 /* AppDelegate.swift */; };
 		35C05ED0254C4F8300DCD484 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C05ECF254C4F8300DCD484 /* SceneDelegate.swift */; };
 		35C05ED2254C4F8300DCD484 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C05ED1254C4F8300DCD484 /* ContentView.swift */; };
@@ -35,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		351BC12725501C5600BC4B0D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		35B9D0FA254F0A830044A038 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
+		35B9D102254F0AB80044A038 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		35C05ECA254C4F8300DCD484 /* EnglishYami.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnglishYami.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C05ECD254C4F8300DCD484 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35C05ECF254C4F8300DCD484 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +82,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35B9D0F9254F0A680044A038 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0FA254F0A830044A038 /* model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35B9D107254F0AC40044A038 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D102254F0AB80044A038 /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		35B9D108254F0AF80044A038 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35C05ED1254C4F8300DCD484 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		35C05EC1254C4F8300DCD484 = {
 			isa = PBXGroup;
 			children = (
@@ -99,9 +129,12 @@
 		35C05ECC254C4F8300DCD484 /* EnglishYami */ = {
 			isa = PBXGroup;
 			children = (
+				35B9D0F9254F0A680044A038 /* Model */,
+				35B9D108254F0AF80044A038 /* View */,
+				35B9D107254F0AC40044A038 /* ViewModel */,
 				35C05ECD254C4F8300DCD484 /* AppDelegate.swift */,
+				351BC12725501C5600BC4B0D /* NetworkManager.swift */,
 				35C05ECF254C4F8300DCD484 /* SceneDelegate.swift */,
-				35C05ED1254C4F8300DCD484 /* ContentView.swift */,
 				35C05ED3254C4F8500DCD484 /* Assets.xcassets */,
 				35C05ED8254C4F8500DCD484 /* LaunchScreen.storyboard */,
 				35C05EDB254C4F8500DCD484 /* Info.plist */,
@@ -199,7 +232,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = "Alexey Selivanov";
 				TargetAttributes = {
 					35C05EC9254C4F8300DCD484 = {
@@ -267,9 +300,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				351BC12825501C5600BC4B0D /* NetworkManager.swift in Sources */,
+				35B9D103254F0AB80044A038 /* ViewModel.swift in Sources */,
 				35C05ECE254C4F8300DCD484 /* AppDelegate.swift in Sources */,
 				35C05ED0254C4F8300DCD484 /* SceneDelegate.swift in Sources */,
 				35C05ED2254C4F8300DCD484 /* ContentView.swift in Sources */,
+				35B9D0FB254F0A830044A038 /* model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +378,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -402,6 +439,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
