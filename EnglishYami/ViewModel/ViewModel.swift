@@ -8,19 +8,20 @@
 
 import SwiftUI
 
-protocol TranslateViewModelProtocol: ObservableObject {
-    func fetchTranslate(word: String)
+protocol ResponseViewModelProtocol: ObservableObject {
+    func getResponseFromNetwork(word: String)
 }
 
-class TranslateViewModel: TranslateViewModelProtocol {
+class ResponseViewModel: ResponseViewModelProtocol {
 
     let networkManager = NetworkManager()
     
-    @Published var translateText = ""
+    @Published var wordModel: Word?
     
-    func fetchTranslate(word: String) {
-        networkManager.getTranslatedText(word: word) { [weak self] translatedText in
-            self?.translateText = translatedText
+    func getResponseFromNetwork(word: String) {
+        networkManager.fetchResultInModel(word: word) { [weak self] wordModel in
+            guard let wordModel = wordModel else { return }
+            self?.wordModel = wordModel
         }
     }
 }

@@ -18,6 +18,8 @@
 		35C05EDA254C4F8500DCD484 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C05ED8254C4F8500DCD484 /* LaunchScreen.storyboard */; };
 		35C05EE5254C4F8600DCD484 /* EnglishYamiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C05EE4254C4F8600DCD484 /* EnglishYamiTests.swift */; };
 		35C05EF0254C4F8600DCD484 /* EnglishYamiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C05EEF254C4F8600DCD484 /* EnglishYamiUITests.swift */; };
+		35E50DF92551749500718A3E /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E50DF82551749500718A3E /* ImageView.swift */; };
+		35E50DFE255175B800718A3E /* URLImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E50DFD255175B800718A3E /* URLImageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		35C05EEB254C4F8600DCD484 /* EnglishYamiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnglishYamiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C05EEF254C4F8600DCD484 /* EnglishYamiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishYamiUITests.swift; sourceTree = "<group>"; };
 		35C05EF1254C4F8600DCD484 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35E50DF82551749500718A3E /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		35E50DFD255175B800718A3E /* URLImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				35B9D102254F0AB80044A038 /* ViewModel.swift */,
+				35E50DFD255175B800718A3E /* URLImageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -102,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				35C05ED1254C4F8300DCD484 /* ContentView.swift */,
+				35E50DF82551749500718A3E /* ImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -304,7 +310,9 @@
 				35B9D103254F0AB80044A038 /* ViewModel.swift in Sources */,
 				35C05ECE254C4F8300DCD484 /* AppDelegate.swift in Sources */,
 				35C05ED0254C4F8300DCD484 /* SceneDelegate.swift in Sources */,
+				35E50DFE255175B800718A3E /* URLImageViewModel.swift in Sources */,
 				35C05ED2254C4F8300DCD484 /* ContentView.swift in Sources */,
+				35E50DF92551749500718A3E /* ImageView.swift in Sources */,
 				35B9D0FB254F0A830044A038 /* model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

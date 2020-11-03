@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 class NetworkManager {
-    func getTranslatedText(word: String, completion: @escaping (String) -> Void) {
+    
+    func fetchResultInModel(word: String, completion: @escaping (Word?) -> Void) {
         
         let urlString = "https://dictionary.skyeng.ru/api/public/v1/words/search?search=\(word)&page=1&pageSize=1"
         
@@ -17,24 +19,32 @@ class NetworkManager {
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
-                guard let data = data else {
-                    completion("")
-                    return
-                }
-                guard error == nil else {
-                    completion("")
-                    return
-                }
+                guard let data = data else { return }
+                guard error == nil else { return }
                 
                 do {
                     let words = try JSONDecoder().decode([Word].self, from: data)
-                    let translatedWord = words[0].meanings[0].translation.text
-                    completion(translatedWord)
+                    guard words.count > 0 else { return }
+                    let wordModel = words[0]
+                    completion(wordModel)
                 } catch let jsonError {
-                    completion("")
                     print(jsonError.localizedDescription)
                 }
             }
         }.resume()
+    }
+    
+    func getImage(urlString: String, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url)  { (data, response, error) in
+            DispatchQueue.main.async {
+                guard error == nil else { return }
+                guard let data = data else { return }
+                guard let loadedImage = UIImage(data: data) else { return }
+                completion(loadedImage)
+            }
+        }
+        .resume()
     }
 }

@@ -11,16 +11,16 @@ import Combine
 
 struct ContentView: View {
     
-    @ObservedObject var viewModel = TranslateViewModel()
+    @ObservedObject var viewModel = ResponseViewModel()
     @State var searchFieldText = ""
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Bla-bla").bold()
             TextField("Введите слово", text: $searchFieldText, onCommit: {
-                viewModel.fetchTranslate(word: searchFieldText)
+                viewModel.getResponseFromNetwork(word: searchFieldText)
             }).textFieldStyle(RoundedBorderTextFieldStyle())
-            Text(viewModel.translateText)
+            Text(viewModel.wordModel?.meanings[0].translation.text ?? "")
+            ImageView(urlString: viewModel.wordModel?.meanings[0].imageUrl)
             Spacer()
         }.padding()
     }
