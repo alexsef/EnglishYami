@@ -19,13 +19,15 @@ struct ImageView: View {
     }
     
     var body: some View {
-        Image(uiImage: viewModel.image ?? ImageView.defaultImage!)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 200, height: 200)
+        if let image = viewModel.image {
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        }
+        
     }
     
-    static var defaultImage = UIImage(named: "document_icon")
+//    static var defaultImage = UIImage(named: "document_icon")
 }
 
 struct ImageView_Previews: PreviewProvider {

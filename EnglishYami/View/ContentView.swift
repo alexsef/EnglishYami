@@ -11,18 +11,46 @@ import Combine
 
 struct ContentView: View {
     
-    @ObservedObject var viewModel = ResponseViewModel()
-    @State var searchFieldText = ""
+    @State var showMenu = false
     
     var body: some View {
-        VStack(alignment: .leading) {
-            TextField("Введите слово", text: $searchFieldText, onCommit: {
-                viewModel.getResponseFromNetwork(word: searchFieldText)
-            }).textFieldStyle(RoundedBorderTextFieldStyle())
-            Text(viewModel.wordModel?.meanings[0].translation.text ?? "")
-            ImageView(urlString: viewModel.wordModel?.meanings[0].imageUrl)
-            Spacer()
-        }.padding()
+        
+        let drag = DragGesture()
+            .onEnded {
+                if $0.translation.width < -100 {
+                    withAnimation {
+                        self.showMenu = false
+                    }
+                }
+            }
+        
+        return NavigationView {
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    MainView(showMenu: self.$showMenu)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .offset(x: self.showMenu ? geometry.size.width/2 : 0)
+                        .disabled(self.showMenu)
+                    if self.showMenu {
+                        MenuView()
+                            .frame(width: geometry.size.width/2)
+                            .transition(.move(edge: .leading))
+                    }
+                }
+                .gesture(drag)
+            }
+            .navigationBarTitle("Side menu", displayMode: .inline)
+            .navigationBarItems(leading: (
+                Button(action: {
+                    withAnimation {
+                        self.showMenu.toggle()
+                    }
+                }, label: {
+                    Image(systemName: "line.horizontal.3")
+                        .imageScale(.large)
+                })
+            ))
+        }
     }
 }
 
