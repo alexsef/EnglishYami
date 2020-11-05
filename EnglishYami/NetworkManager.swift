@@ -39,9 +39,14 @@ class NetworkManager {
         
         URLSession.shared.dataTask(with: url)  { (data, response, error) in
             DispatchQueue.main.async {
-                guard error == nil else { return }
-                guard let data = data else { return }
-                guard let loadedImage = UIImage(data: data) else { return }
+                guard error == nil,
+                      let response = response as? HTTPURLResponse,
+                      response.statusCode == 200,
+                      let data = data,
+                      let loadedImage = UIImage(data: data)
+                else {
+                    return
+                }
                 completion(loadedImage)
             }
         }
