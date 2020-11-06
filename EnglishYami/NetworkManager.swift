@@ -11,22 +11,30 @@ import SwiftUI
 
 class NetworkManager {
     
-    func fetchResultInModel(word: String, completion: @escaping (Word?) -> Void) {
+    func fetchResultInModel(word: String, completion: @escaping ([UnpreparedWordModel]?, Int) -> Void) {
         
-        let urlString = "https://dictionary.skyeng.ru/api/public/v1/words/search?search=\(word)&page=1&pageSize=1"
+        let page = 1
+        let pageSize = 10
+        
+        let urlString = "https://dictionary.skyeng.ru/api/public/v1/words/search?search=\(word)&page=\(page)&pageSize=\(pageSize)"
         
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
-                guard let data = data else { return }
-                guard error == nil else { return }
+                guard let data = data,
+                      error == nil,
+                      let response = response as? HTTPURLResponse,
+                      response.statusCode == 200
+                else {
+                    return
+                }
                 
                 do {
-                    let words = try JSONDecoder().decode([Word].self, from: data)
+                    let words = try JSONDecoder().decode([UnpreparedWordModel].self, from: data)
                     guard words.count > 0 else { return }
-                    let wordModel = words[0]
-                    completion(wordModel)
+                    let wordModel = words
+                    completion(wordModel, words.count)
                 } catch let jsonError {
                     print(jsonError.localizedDescription)
                 }

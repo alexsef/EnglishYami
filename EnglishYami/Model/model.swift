@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Word: Decodable {
+struct UnpreparedWordModel: Decodable {
+    let id: Int
     let text: String
     let meanings: [Meaning]
 }
@@ -20,4 +21,11 @@ struct Meaning: Decodable {
 
 struct Translation: Decodable {
     let text: String
+}
+
+struct Word: Hashable, Identifiable {
+    let id: Int
+    let text: String
+    let translatedText: String
+    let imageUrl: String
 }

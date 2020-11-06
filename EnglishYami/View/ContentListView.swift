@@ -8,34 +8,37 @@
 
 import SwiftUI
 
-struct ContentDetailView: View {
+struct ContentListView: View {
     
     @State var searchFieldText = ""
     
     @ObservedObject var viewModel = ResponseViewModel()
     
     var body: some View {
+        
         VStack(alignment: .leading) {
             TextField("Введите слово", text: $searchFieldText, onEditingChanged: { focused in
-                if focused, let _ = viewModel.wordModel {
-                    viewModel.wordModel = nil
+                if focused {
+                    viewModel.words = []
                 }
             }, onCommit: {
                 viewModel.getResponseFromNetwork(word: searchFieldText)
-            }
-            ).textFieldStyle(RoundedBorderTextFieldStyle())
+            })
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding()
             Spacer()
-            ImageView(urlString: viewModel.wordModel?.meanings[0].imageUrl) // hardcode
-            Text(viewModel.wordModel?.meanings[0].translation.text ?? "") // to do: remove this hardcode
-                .font(.title)
-                .frame(maxWidth: .infinity, alignment: .center)
+            WordListView(words: viewModel.words)
+//            ImageView(urlString: viewModel.wordModels?.meanings[0].imageUrl) // hardcode
+//            Text(viewModel.wordModels?.meanings[0].translation.text ?? "") // to do: remove this hardcode
+//                .font(.title)
+//                .frame(maxWidth: .infinity, alignment: .center)
             Spacer()
-        }.padding()
+        }
     }
 }
 
 struct MainContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentDetailView()
+        ContentListView()
     }
 }

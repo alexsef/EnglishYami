@@ -15,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ContentDetailView()
+            ContentListView()
             .navigationBarTitle("Yami English", displayMode: .inline)
             .navigationBarItems(trailing: (
                 NavigationLink(
