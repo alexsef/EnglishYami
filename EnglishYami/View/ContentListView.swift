@@ -28,10 +28,6 @@ struct ContentListView: View {
             .padding()
             Spacer()
             WordListView(words: viewModel.words)
-//            ImageView(urlString: viewModel.wordModels?.meanings[0].imageUrl) // hardcode
-//            Text(viewModel.wordModels?.meanings[0].translation.text ?? "") // to do: remove this hardcode
-//                .font(.title)
-//                .frame(maxWidth: .infinity, alignment: .center)
             Spacer()
         }
     }

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct UnpreparedWordModel: Decodable {
+struct UnpreparedWord: Decodable {
     let id: Int
     let text: String
     let meanings: [Meaning]
@@ -17,6 +18,7 @@ struct UnpreparedWordModel: Decodable {
 struct Meaning: Decodable {
     let translation: Translation
     let imageUrl: String
+    let previewUrl: String
 }
 
 struct Translation: Decodable {
@@ -28,4 +30,6 @@ struct Word: Hashable, Identifiable {
     let text: String
     let translatedText: String
     let imageUrl: String
+    let previewUrl: String
+    var previewImage: UIImage?
 }

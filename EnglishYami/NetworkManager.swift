@@ -11,7 +11,7 @@ import SwiftUI
 
 class NetworkManager {
     
-    func fetchResultInModel(word: String, completion: @escaping ([UnpreparedWordModel]?, Int) -> Void) {
+    func fetchResultInModel(word: String, completion: @escaping ([UnpreparedWord]?) -> Void) {
         
         let page = 1
         let pageSize = 10
@@ -31,10 +31,9 @@ class NetworkManager {
                 }
                 
                 do {
-                    let words = try JSONDecoder().decode([UnpreparedWordModel].self, from: data)
+                    let words = try JSONDecoder().decode([UnpreparedWord].self, from: data)
                     guard words.count > 0 else { return }
-                    let wordModel = words
-                    completion(wordModel, words.count)
+                    completion(words)
                 } catch let jsonError {
                     print(jsonError.localizedDescription)
                 }
@@ -43,7 +42,8 @@ class NetworkManager {
     }
     
     func getImage(urlString: String, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: urlString) else { return }
+        let preparedUrlString = prepareURLString(urlString: urlString)
+        guard let url = URL(string: preparedUrlString) else { return }
         
         URLSession.shared.dataTask(with: url)  { (data, response, error) in
             DispatchQueue.main.async {
@@ -59,5 +59,11 @@ class NetworkManager {
             }
         }
         .resume()
+    }
+    
+    func prepareURLString(urlString: String) -> String {
+        var urlString = urlString
+        urlString.removeFirst(min(urlString.count, 2))
+        return "https://\(urlString)"
     }
 }

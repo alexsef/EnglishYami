@@ -21,7 +21,7 @@ struct ContentView: View {
                 NavigationLink(
                     destination: MenuView(),
                     label: {
-                        Text("Меню")
+                        Image(systemName: "text.alignright").foregroundColor(.primary)
                     }
                 )
             ))

@@ -37,9 +37,12 @@ struct WordRow: View {
                 .foregroundColor(.white)
                 .shadow(radius: 1, y: 1)
                 .frame(width: UIScreen.main.bounds.width - 32,
-                       height: 80,
+                       height: 100,
                        alignment: .leading)
             HStack {
+                Image(uiImage: word.previewImage ?? UIImage())
+                    .padding()
+                
                 VStack(alignment: .leading) {
                     Text(word.text)
                         .accentColor(.primary)
@@ -50,10 +53,7 @@ struct WordRow: View {
                         .accentColor(.primary)
                         .padding([.bottom, .horizontal])
                         .font(.subheadline)
-                        
                 }
-                
-                
                 Spacer()
                 
                 Image(systemName: "chevron.right")
@@ -69,7 +69,7 @@ struct WordRow: View {
 struct WordRow_Previews: PreviewProvider {
    
     static var previews: some View {
-        let word: Word = Word(id: 1, text: "Something text", translatedText: "translated text", imageUrl: "some url")
+        let word: Word = Word(id: 1, text: "Something text", translatedText: "translated text", imageUrl: "some url", previewUrl: "https://d2zkmv5t5kao9.cloudfront.net/images/ea4f7ce85e73e44cec430fe87db3f3ce.jpeg?w=96&amp;h=72", previewImage: UIImage())
         
         return WordRow(word: word)
     }

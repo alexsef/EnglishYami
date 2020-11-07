@@ -20,14 +20,7 @@ class URLImageViewModel: ImageViewModelProtocol {
     @Published var image: UIImage?
     
     func loadImage(urlString: String) {
-        let preparedUrlString = prepareURLString(urlString: urlString)
-        fetchImage(urlString: preparedUrlString)
-    }
-    
-    func prepareURLString(urlString: String) -> String {
-        var urlString = urlString
-        urlString.removeFirst(min(urlString.count, 2))
-        return "https://\(urlString)"
+        fetchImage(urlString: urlString)
     }
     
     func fetchImage(urlString: String) {
