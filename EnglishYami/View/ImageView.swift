@@ -13,8 +13,7 @@ struct ImageView: View {
     
     @ObservedObject var viewModel = URLImageViewModel()
     
-    init(urlString: String? = nil) {
-        guard let urlString = urlString else { return }
+    init(urlString: String) {
         viewModel.loadImage(urlString: urlString)
     }
     
@@ -23,15 +22,13 @@ struct ImageView: View {
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .background(Color.white)
         }
-        
     }
-    
-//    static var defaultImage = UIImage(named: "document_icon")
 }
 
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageView()
+        ImageView(urlString: "//google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D_60rAgaoA6s&psig=AOvVaw0rfTCsXhjmXtVahLlRX70V&ust=1604908226862000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiunNy68uwCFQAAAAAdAAAAABAD")
     }
 }

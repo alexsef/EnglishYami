@@ -14,15 +14,15 @@ struct WordListView: View {
     
     var body: some View {
         if !words.isEmpty {
-            ScrollView {
+            ScrollView() {
                 VStack(alignment: .leading) {
                     ForEach(words) { word in
-                        NavigationLink(destination: Text("\(word.text) \(word.translatedText)"), label: {
+                        NavigationLink(destination: DetailWord(word: word), label: {
                             WordRow(word: word)
                         })
                     }
                 }
-            }
+            }.frame(width: UIScreen.main.bounds.width)
         }
     }
 }
@@ -33,7 +33,7 @@ struct WordRow: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 15)
                 .foregroundColor(.white)
                 .shadow(radius: 1, y: 1)
                 .frame(width: UIScreen.main.bounds.width - 32,
@@ -41,6 +41,7 @@ struct WordRow: View {
                        alignment: .leading)
             HStack {
                 Image(uiImage: word.previewImage ?? UIImage())
+                    .cornerRadius(10)
                     .padding()
                 
                 VStack(alignment: .leading) {
@@ -48,11 +49,13 @@ struct WordRow: View {
                         .accentColor(.primary)
                         .padding([.top, .horizontal])
                         .font(.headline)
+                        .lineLimit(2)
                     
                     Text(word.translatedText)
                         .accentColor(.primary)
                         .padding([.bottom, .horizontal])
                         .font(.subheadline)
+                        .lineLimit(2)
                 }
                 Spacer()
                 
@@ -63,6 +66,14 @@ struct WordRow: View {
         }.padding([.leading, .trailing])
     }
     
+}
+
+struct WordListView_Previews: PreviewProvider {
+    static var previews: some View {
+        let word: Word = Word(id: 1, text: "Something text", translatedText: "translated text", imageUrl: "some url", previewUrl: "https://d2zkmv5t5kao9.cloudfront.net/images/ea4f7ce85e73e44cec430fe87db3f3ce.jpeg?w=96&amp;h=72", previewImage: UIImage())
+        
+        return WordListView(words: [word])
+    }
 }
 
 
