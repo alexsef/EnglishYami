@@ -12,30 +12,29 @@ struct ContentListView: View {
     
     @State var searchFieldText = ""
     
-    @ObservedObject var viewModel = ResponseViewModel()
-    
-    var body: some View {
-        
-        VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "magnifyingglass")
-                    .padding(.leading)
-                TextField("Введите слово", text: $searchFieldText, onEditingChanged: { focused in
-                    if focused {
-                        viewModel.words = []
-                    }
-                }, onCommit: {
-                    viewModel.getResponseFromNetwork(word: searchFieldText)
-                })
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.trailing)
-            }
-            .padding([.top, .bottom])
-            .background(Color(red: 32/255, green: 32/255, blue: 32/255, opacity: 0.1))
+    @ObservedObject var viewModel = ViewModel()
 
-            WordListView(words: viewModel.words)
-            Spacer()
+    var body: some View {
+        Group {
+            VStack(alignment: .leading) {
+                HStack(spacing: 15) {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
+                    TextField("Введите слово", text: $viewModel.text)
+                }
+                .padding(.vertical, 12)
+                .padding(.horizontal)
+                .background(Color.white)
+                .clipShape(Capsule())
+
+                WordListView(words: viewModel.words)
+                Spacer()
+            }
+            .padding([.leading, .trailing])
         }
+        .padding(.top, 10)
+        
+        
     }
 }
 

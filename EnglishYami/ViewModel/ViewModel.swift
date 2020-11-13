@@ -8,11 +8,18 @@
 
 import SwiftUI
 
-protocol ResponseViewModelProtocol: ObservableObject {
+protocol ViewModelProtocol: ObservableObject {
     func getResponseFromNetwork(word: String)
 }
 
-class ResponseViewModel: ResponseViewModelProtocol {
+class ViewModel: ViewModelProtocol {
+    
+    @Published var text = "" {
+        willSet {
+            words.removeAll()
+            getResponseFromNetwork(word: newValue)
+        }
+    }
 
     let networkManager = NetworkManager()
     @Published var words = [Word]()

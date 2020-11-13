@@ -28,10 +28,12 @@ struct DetailWord: View {
             .lineLimit(1).foregroundColor(.white)
             .multilineTextAlignment(.leading)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40)
-            .background(Color.blue)
+            .background(Color.blue.opacity(0.5))
             
             Spacer()
         }
+        .navigationTitle(word.text)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 protocol ImageViewModelProtocol: ObservableObject {
-    func fetchImage(urlString: String)
+    func loadImage(urlString: String)
 }
 
 class URLImageViewModel: ImageViewModelProtocol {
@@ -20,10 +20,6 @@ class URLImageViewModel: ImageViewModelProtocol {
     @Published var image: UIImage?
     
     func loadImage(urlString: String) {
-        fetchImage(urlString: urlString)
-    }
-    
-    func fetchImage(urlString: String) {
         networkManager.getImage(urlString: urlString) { [weak self] image in
             self?.image = image
         }

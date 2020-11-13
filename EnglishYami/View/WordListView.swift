@@ -22,7 +22,7 @@ struct WordListView: View {
                         })
                     }
                 }
-            }.frame(width: UIScreen.main.bounds.width)
+            }
         }
     }
 }
@@ -34,8 +34,7 @@ struct WordRow: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.white)
-                .shadow(radius: 1, y: 1)
+                .foregroundColor(Color.blue.opacity(0.4))
                 .frame(width: UIScreen.main.bounds.width - 32,
                        height: 100,
                        alignment: .leading)
@@ -46,13 +45,13 @@ struct WordRow: View {
                 
                 VStack(alignment: .leading) {
                     Text(word.text)
-                        .accentColor(.primary)
+                        .accentColor(.white)
                         .padding([.top, .horizontal])
                         .font(.headline)
                         .lineLimit(2)
                     
                     Text(word.translatedText)
-                        .accentColor(.primary)
+                        .accentColor(.white)
                         .padding([.bottom, .horizontal])
                         .font(.subheadline)
                         .lineLimit(2)
@@ -60,10 +59,10 @@ struct WordRow: View {
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .foregroundColor(.primary)
                     .padding(.trailing)
+                    .foregroundColor(.white)
             }
-        }.padding([.leading, .trailing])
+        }
     }
     
 }

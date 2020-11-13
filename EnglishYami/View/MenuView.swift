@@ -31,7 +31,7 @@ struct MenuView: View {
                 Image(systemName: "gear")
                     .foregroundColor(.gray)
                     .imageScale(.large)
-                Text("Settings ")
+                Text("Settings")
                     .foregroundColor(.gray)
                     .font(.headline)
             }.padding(.top, 30)

@@ -15,16 +15,10 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ContentListView()
-            .navigationBarTitle("Yami English", displayMode: .inline)
-            .navigationBarItems(trailing: (
-                NavigationLink(
-                    destination: MenuView(),
-                    label: {
-                        Image(systemName: "text.alignright").foregroundColor(.primary)
-                    }
-                )
-            ))
+            CustomTabView()
+                .navigationTitle("")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(true)
         }
     }
 }
